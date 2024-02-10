@@ -2,10 +2,11 @@
 
 # Function to gather user information
 gather_user_info() {
-    read -p "What Will The Root Password Be? " root_password
-    read -p "What Will The Primary Username Be? " username
-    read -p "What Will The Password For $username Be? " user_password
-    read -p "What Will The Host Name Be? (Name of The Computer) " hostname
+    echo "placeholder"
+    #read -p "What Will The Root Password Be? " root_password
+    #read -p "What Will The Primary Username Be? " username
+    #read -p "What Will The Password For $username Be? " user_password
+    #read -p "What Will The Host Name Be? (Name of The Computer) " hostname
 }
 
 # Function to continue with the installation
@@ -48,10 +49,6 @@ continue_with_installation() {
     clear
     echo "Mounting System"
     pacman -S git
-    git clone https://github.com/CassieNovaCodes/paleLeaf.git
-    sed -i 's/\r$//' /paleLeaf/paleLeafInstall_Part1.sh
-    sed -i 's/\r$//' /paleLeaf/part2.sh
-    mv /paleLeaf/ /mnt
     arch-chroot /mnt
     
     
