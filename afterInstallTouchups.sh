@@ -13,4 +13,4 @@ tar -xzvf config.tar.gz
 mv .config ~/
 mv .local ~/
 echo "reboot by typing reboot"
-mv os-release /etc/
+#mv os-release /etc/
