@@ -23,6 +23,7 @@ continue_with_installation() {
     echo "Formatting partitions..."
     mkfs.fat -F32 /dev/sda1
     mkswap /dev/sda2
+    swapon /dev/sda2
     clear
     echo "Writing changes to disk..."
     partprobe /dev/sda
@@ -35,6 +36,30 @@ continue_with_installation() {
     timedatectl set-ntp true
     clear
     echo "pacstraping packages"
+    mount /dev/sda3 /mnt
+    mount --mkdir /dev/sda1 /mnt/boot
+    pacstrap -K /mnt base linux linux-firmware
+    clear
+    echo "Generating File System"
+    genfstab -U /mnt >> /mnt/etc/fstab
+    clear
+    echo "Setting TimeZone"
+    ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
+    clear
+    echo "Mounting System"
+    arch-chroot /mnt
+    clear
+    echo "Generating Locales"
+    hwclock --systohc
+    sed -i '/^# *en_US.UTF-8/s/^# *//' /etc/locale.gen
+    locale-gen
+    clear
+    echo "Setting Up Hostname"
+    echo "$hostname" | sudo tee /etc/hostname >/dev/null
+    clear
+    echo "Setting Passwords"
+    echo -e "$root_password\n$root_password" | passwd
+    
     
 }
 
