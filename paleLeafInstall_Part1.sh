@@ -39,17 +39,14 @@ continue_with_installation() {
     echo "pacstraping packages"
     mount /dev/sda3 /mnt
     mount --mkdir /dev/sda1 /mnt/boot
-    pacstrap -K /mnt base linux linux-firmware
+    pacstrap /mnt base linux linux-firmware #-K removed
     clear
     echo "Generating File System"
     genfstab -U /mnt >> /mnt/etc/fstab
     clear
-    echo "Setting TimeZone"
-    ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
-    clear
     echo "Mounting System"
-    pacman -S git
     arch-chroot /mnt
+    
     
     
     
