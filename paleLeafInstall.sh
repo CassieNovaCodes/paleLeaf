@@ -15,8 +15,27 @@ continue_with_installation() {
     echo "Formatting /dev/sda to GPT..."
     echo -e "g\nw" | fdisk /dev/sda
     echo "Adding partitions..."
-    echo -e "n\n\n\n+551M\nn\n\n\n+${swapspace}G\nn\n\n\n\nw" | fdisk /dev/sda
+    echo -e "n\n\n\n+551M\nn\n\n\n+4G\nn\n\n\n\nw" | fdisk /dev/sda
+    clear
+    echo "Changing partition types..."
+    echo -e "t\n1\n1\nt\n2\n19\nw" | fdisk /dev/sda
+    clear
+    echo "Formatting partitions..."
+    mkfs.fat -F32 /dev/sda1
+    mkswap /dev/sda2
+    clear
+    echo "Writing changes to disk..."
+    partprobe /dev/sda
 
+    #Partioning Segment End
+   
+    #Begin Arch Install
+    clear
+    echo "Setting ntp"
+    timedatectl set-ntp true
+    clear
+    echo "pacstraping packages"
+    
 }
 
 clear
