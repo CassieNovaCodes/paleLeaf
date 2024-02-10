@@ -1,4 +1,4 @@
-sudo pacman -S xorg xorg-xinit xf86-video-fbdev picom nitrogen cinnamon firefox --noconfirm
+sudo pacman -S xorg xorg-xinit xf86-video-fbdev picom nitrogen cinnamon neofetch firefox --noconfirm
 echo "\n" | pacman -S base-devel --noconfirm
 cd ~/
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
@@ -13,3 +13,4 @@ tar -xzvf config.tar.gz
 mv .config ~/
 mv .local ~/
 echo "reboot by typing reboot"
+mv os-release /etc/
