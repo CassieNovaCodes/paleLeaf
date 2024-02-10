@@ -47,7 +47,9 @@ continue_with_installation() {
     ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
     clear
     echo "Mounting System"
-    mv /paleLeaf/part2.sh /mnt
+    pacman -S git
+    git clone https://github.com/CassieNovaCodes/paleLeaf.git
+    mv /paleLeaf/ /mnt
     arch-chroot /mnt
     
     
