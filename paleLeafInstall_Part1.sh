@@ -49,6 +49,8 @@ continue_with_installation() {
     echo "Mounting System"
     pacman -S git
     git clone https://github.com/CassieNovaCodes/paleLeaf.git
+    sed -i 's/\r$//' /paleLeaf/paleLeafInstall_Part1.sh
+    sed -i 's/\r$//' /paleLeaf/part2.sh
     mv /paleLeaf/ /mnt
     arch-chroot /mnt
     
