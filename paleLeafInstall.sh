@@ -10,8 +10,24 @@ gather_user_info() {
 
 # Function to continue with the installation
 continue_with_installation() {
-    echo "Continue with the installation..."
-    # Place your installation script here
+    echo "Continuing with the installation..."
+
+    echo "Formatting /dev/sda to GPT..."
+    parted -s /dev/sda mklabel gpt
+    clear
+    echo "Adding partitions..."
+    parted -s /dev/sda mkpart primary 1MiB 551MiB
+    parted -s /dev/sda mkpart primary 551MiB ${swapspace}GB
+    parted -s /dev/sda mkpart primary ${swapspace}GB 100%
+    clear
+    echo "Formatting partitions..."
+    mkfs.fat -F32 /dev/sda1
+    mkswap /dev/sda2
+    mkfs.ext4 /dev/sda3
+    clear
+    partprobe /dev/sda
+    clear
+    echo "Script completed successfully."
 }
 
 clear
