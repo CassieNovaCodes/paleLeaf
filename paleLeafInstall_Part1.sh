@@ -47,6 +47,7 @@ continue_with_installation() {
     ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
     clear
     echo "Mounting System"
+    mv /paleLeaf/part2.sh /mnt
     arch-chroot /mnt
     
     
