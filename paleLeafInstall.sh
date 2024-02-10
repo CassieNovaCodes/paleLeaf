@@ -13,21 +13,10 @@ continue_with_installation() {
     echo "Continuing with the installation..."
 
     echo "Formatting /dev/sda to GPT..."
-    parted -s /dev/sda mklabel gpt
-    clear
+    echo -e "g\nw" | fdisk /dev/sda
     echo "Adding partitions..."
-    parted -s /dev/sda mkpart primary 1MiB 551MiB
-    parted -s /dev/sda mkpart primary 551MiB ${swapspace}GB
-    parted -s /dev/sda mkpart primary ${swapspace}GB 100%
-    clear
-    echo "Formatting partitions..."
-    mkfs.fat -F32 /dev/sda1
-    mkswap /dev/sda2
-    mkfs.ext4 /dev/sda3
-    clear
-    partprobe /dev/sda
-    clear
-    echo "Script completed successfully."
+    echo -e "n\n\n\n+551M\nn\n\n\n+${swapspace}G\nn\n\n\n\nw" | fdisk /dev/sda
+
 }
 
 clear
