@@ -3,6 +3,9 @@
     read -p "What Will The Password For $username Be? " user_password
     read -p "What Will The Host Name Be? (Name of The Computer) " hostname
     clear
+    echo "Setting TimeZone"
+    ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
+    clear
     echo "Generating Locales"
     hwclock --systohc
     sed -i '/^# *en_US.UTF-8/s/^# *//' /etc/locale.gen
