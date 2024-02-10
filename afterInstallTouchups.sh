@@ -7,3 +7,9 @@ lines_to_add="picom&\n
 nitrogen&\n
 exec cinnamon-session"
 echo "$lines_to_add" >> ~/.xinitrc
+cd paleLeaf
+tar -xzvf local.tar.gz
+tar -xzvf config.tar.gz
+mv .config ~/
+mv .local ~/
+echo "reboot by typing reboot"
